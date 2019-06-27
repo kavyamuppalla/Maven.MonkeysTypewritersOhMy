@@ -27,8 +27,33 @@ public class MonkeyTypewriter {
 
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
+        UnsafeCopier copier = new UnsafeCopier(introduction);
+        Thread monkey1 = new Thread(copier);
+        Thread monkey2 = new Thread(copier);
+        Thread monkey3 = new Thread(copier);
+        Thread monkey4 = new Thread(copier);
+        Thread monkey5 = new Thread(copier);
+        monkey1.start();
+        monkey2.start();
+        monkey3.start();
+        monkey4.start();
+        monkey5.start();
+
+        SafeCopier safeCopier = new SafeCopier(introduction);
+        Thread safeMonkey1 = new Thread(safeCopier);
+        Thread safeMonkey2 = new Thread(safeCopier);
+        Thread safeMonkey3 = new Thread(safeCopier);
+        Thread safeMonkey4 = new Thread(safeCopier);
+        Thread safeMonkey5 = new Thread(safeCopier);
+        safeMonkey1.start();
+        safeMonkey2.start();
+        safeMonkey3.start();
+        safeMonkey4.start();
+        safeMonkey5.start();
         try {
             Thread.sleep(1000);
+            System.out.println("Unsafe Text ==== " + copier.copied);
+            System.out.println("\n\n\n Safe Text===" + safeCopier.copied);
         } catch(InterruptedException e) {
             System.out.println("MAIN INTERRUPTED");
         }

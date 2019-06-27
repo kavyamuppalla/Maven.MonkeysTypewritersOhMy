@@ -6,9 +6,14 @@ package io.zipcoder;
 public class UnsafeCopier extends Copier {
 
     public UnsafeCopier(String toCopy) {
+
         super(toCopy);
     }
 
     public void run() {
+        while (this.stringIterator.hasNext()) {
+            copied = copied + this.stringIterator.next();
+        }
+
     }
 }
